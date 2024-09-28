@@ -3,8 +3,15 @@ import streamlit as st
 import json
 
 # Load the JSON data
-with open('D:/OneDrive/Desktop/Projects/science/pages/scrapers/molgenics.json') as f:
-    molgenics_data = json.load(f)
+    # Get the directory where the current script is located
+    current_dir = os.path.dirname(__file__)
+    
+    # Construct the full path to the JSON file
+    json_path = os.path.join(current_dir, 'scrapers', 'molgenics.json')  # Update to use the correct JSON file
+    
+    # Load the JSON data
+    with open(json_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
 with open('D:/OneDrive/Desktop/Projects/science/pages/scrapers/scientificlabs_all_products.json') as f:
     scientificlabs_data = json.load(f)
