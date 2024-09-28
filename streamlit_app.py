@@ -1,37 +1,22 @@
 #D:\OneDrive\Desktop\Projects\science>streamlit run science-main.py
 import streamlit as st
 import json
+import os
 
-def load_data():
-    # Load the JSON data
+# Load JSON data from two different files
+def load_data(file_name):
     # Get the directory where the current script is located
     current_dir = os.path.dirname(__file__)
     
     # Construct the full path to the JSON file
-    json_path = os.path.join(current_dir, 'scrapers', 'molgenics.json')  # Update to use the correct JSON file
+    json_path = os.path.join(current_dir, 'scrapers', file_name)
     
     # Load the JSON data
     with open(json_path, 'r', encoding='utf-8') as f:
         return json.load(f)
 
-    # Get the directory where the current script is located
-    current_dir = os.path.dirname(__file__)
-    
-    # Construct the full path to the JSON file
-    json_path = os.path.join(current_dir, 'scrapers', 'scientificlabs_all_products.json')  # Update to use the correct JSON file
-    
-    # Load the JSON data
-    with open(json_path, 'r', encoding='utf-8') as f:
-        return json.load(f)
-
-# Load the data
-data = load_data()
-
-# Extract unique products from the data
-products = extract_unique_products(data)
-
-# Function to search both JSON files
-def search_products(query):
+# Function to search products across both datasets
+def search_products(query, molgenics_data, scientificlabs_data):
     results = []
     
     # Search in molgenics.json file
@@ -57,6 +42,10 @@ def search_products(query):
     
     return results
 
+# Load the data from both JSON files
+molgenics_data = load_data('molgenics.json')
+scientificlabs_data = load_data('scientificlabs_all_products.json')
+
 # Streamlit interface
 st.title("Product Search")
 
@@ -65,7 +54,7 @@ search_query = st.text_input("Enter search term")
 
 # Display search results
 if search_query:
-    results = search_products(search_query)
+    results = search_products(search_query, molgenics_data, scientificlabs_data)
     if results:
         for result in results:
             st.subheader(result["source"])
@@ -74,4 +63,5 @@ if search_query:
             st.write(f"**Link:** [Product Link]({result['link']})")
     else:
         st.write("No results found.")
+
 
