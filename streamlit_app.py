@@ -23,6 +23,8 @@ def load_data():
     # Load the JSON data
     with open(json_path, 'r', encoding='utf-8') as f:
         return json.load(f)
+# Load the data
+data = load_data()
 
 # Function to search both JSON files
 def search_products(query):
