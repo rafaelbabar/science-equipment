@@ -23,8 +23,12 @@ def load_data():
     # Load the JSON data
     with open(json_path, 'r', encoding='utf-8') as f:
         return json.load(f)
+
 # Load the data
 data = load_data()
+
+# Extract unique products from the data
+products = extract_unique_products(data)
 
 # Function to search both JSON files
 def search_products(query):
