@@ -9,7 +9,7 @@ def load_data(file_name):
     current_dir = os.path.dirname(__file__)
     
     # Construct the full path to the JSON file
-    json_path = os.path.join(current_dir, 'scrapers', file_name)
+    json_path = os.path.join(current_dir, 'pages\scrapers', file_name)
     
     # Load the JSON data
     with open(json_path, 'r', encoding='utf-8') as f:
