@@ -2,26 +2,27 @@
 import streamlit as st
 import json
 
-# Load the JSON data
-# Get the directory where the current script is located
-current_dir = os.path.dirname(__file__)
+def load_data():
+    # Load the JSON data
+    # Get the directory where the current script is located
+    current_dir = os.path.dirname(__file__)
     
-# Construct the full path to the JSON file
-json_path = os.path.join(current_dir, 'scrapers', 'molgenics.json')  # Update to use the correct JSON file
+    # Construct the full path to the JSON file
+    json_path = os.path.join(current_dir, 'scrapers', 'molgenics.json')  # Update to use the correct JSON file
     
-# Load the JSON data
-with open(json_path, 'r', encoding='utf-8') as f:
-    return json.load(f)
+    # Load the JSON data
+    with open(json_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
-# Get the directory where the current script is located
-current_dir = os.path.dirname(__file__)
+    # Get the directory where the current script is located
+    current_dir = os.path.dirname(__file__)
     
-# Construct the full path to the JSON file
-json_path = os.path.join(current_dir, 'scrapers', 'scientificlabs_all_products.json')  # Update to use the correct JSON file
+    # Construct the full path to the JSON file
+    json_path = os.path.join(current_dir, 'scrapers', 'scientificlabs_all_products.json')  # Update to use the correct JSON file
     
-# Load the JSON data
-with open(json_path, 'r', encoding='utf-8') as f:
-     return json.load(f)
+    # Load the JSON data
+    with open(json_path, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
 # Function to search both JSON files
 def search_products(query):
